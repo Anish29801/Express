@@ -1,16 +1,16 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const path = '/'
+const path = '/:name'
 
-const Color = ['Red', 'Blue','Green'];
-let JSON_obj = {
-    'Name' : 'Anish',
-    'Age' : Math.round(Math.random() * 50),
-    'Color' : Color[Math.round(Math.random() * 2)]
-}
+const Color = ['Red', 'Blue','Green','Black','White','Purple'];
+
 app.get(path, (req, res) => {
-  res.status(200).json({ JSON_obj })
+  res.status(200).json({ 
+    'Name' : String(req.params.name),
+    'Age' : Math.round(Math.random() * 60),
+    'Color' : Color[Math.floor(Math.random() * 3)]
+  })
 })
 
 app.listen(port, () => {
